@@ -12,6 +12,7 @@ permissions:
 
 env:
   ROLE_ARN: "arn:aws:iam::493370826424:role/ih-tf-infrahouse-website-infra-github"
+  STATE_MGR_ROLE_ARN: "arn:aws:iam::289256138624:role/ih-tf-infrahouse-website-infra-state-manager"
 
 jobs:
   apply:
@@ -52,6 +53,7 @@ jobs:
       - name: Download plan
         run: |
           ih-plan \
+            --aws-assume-role-arn "$STATE_MGR_ROLE_ARN" \
             download \
             plans/${{ github.event.pull_request.number }}.plan \
             tf.plan
@@ -73,5 +75,6 @@ jobs:
       - name: Remove plan
         run: |
           ih-plan \
+            --aws-assume-role-arn "$STATE_MGR_ROLE_ARN" \
             remove \
             plans/${{ github.event.pull_request.number }}.plan

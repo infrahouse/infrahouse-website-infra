@@ -10,6 +10,7 @@ permissions:
 
 env:
   ROLE_ARN: "arn:aws:iam::493370826424:role/ih-tf-infrahouse-website-infra-github"
+  STATE_MGR_ROLE_ARN: "arn:aws:iam::289256138624:role/ih-tf-infrahouse-website-infra-state-manager"
 
 jobs:
   terraform:
@@ -68,6 +69,7 @@ jobs:
       - name: Upload Terraform Plan
         run: |
           ih-plan \
+            --aws-assume-role-arn "$STATE_MGR_ROLE_ARN" \
             upload \
             --key-name=plans/${{ github.event.pull_request.number }}.plan \
             tf.plan
