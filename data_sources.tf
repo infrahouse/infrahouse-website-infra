@@ -4,7 +4,7 @@ data "aws_availability_zones" "uw1" {
 }
 
 data "aws_ami" "ubuntu_22" {
-  provider    = aws.aws-493370826424-uw1
+  provider    = aws.aws-uw1
   most_recent = true
 
   filter {
@@ -26,5 +26,6 @@ data "aws_ami" "ubuntu_22" {
 }
 
 data "aws_key_pair" "aleks" {
+  provider = aws.aws-uw1
   key_name = "aleks"
 }
