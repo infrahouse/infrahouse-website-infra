@@ -1,3 +1,5 @@
+SHELL := /usr/bin/env bash
+
 .DEFAULT_GOAL := help
 define BROWSER_PYSCRIPT
 import webbrowser
