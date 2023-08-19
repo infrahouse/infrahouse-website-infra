@@ -4,6 +4,7 @@ module "website" {
   }
   source                = "infrahouse/website-pod/aws"
   version               = "~> 0.1"
+  environment           = var.environment
   ami                   = data.aws_ami.ubuntu_22.image_id
   backend_subnets       = module.website-vpc.subnet_private_ids
   dns_zone              = "infrahouse.com"
