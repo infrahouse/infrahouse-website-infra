@@ -3,7 +3,7 @@ module "website" {
     aws = aws.aws-uw1
   }
   source                = "infrahouse/website-pod/aws"
-  version               = "~> 0.1"
+  version               = "~> 0.1, >= 0.1.1"
   environment           = var.environment
   ami                   = data.aws_ami.ubuntu_22.image_id
   backend_subnets       = module.website-vpc.subnet_private_ids
@@ -13,6 +13,7 @@ module "website" {
   subnets               = module.website-vpc.subnet_public_ids
   userdata              = module.webserver_userdata.userdata
   webserver_permissions = data.aws_iam_policy_document.webserver_permissions.json
+  stickiness_enabled    = true
 }
 
 module "webserver_userdata" {
