@@ -40,12 +40,12 @@ bootstrap-ci:  ## Build environment for CI
 .PHONY: lint
 lint:  ## Check code style
 	yamllint .github/workflows
-	terraform fmt -check
+	terraform fmt -check -recursive
 
 
 .PHONY: format
 format:  ## Format terraform files
-	terraform fmt
+	terraform fmt -recursive
 
 .PHONY: init
 init:
