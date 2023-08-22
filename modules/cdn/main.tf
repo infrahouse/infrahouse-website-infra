@@ -26,6 +26,7 @@ resource "aws_cloudfront_distribution" "repo" {
       "GET", "HEAD"
     ]
     cache_policy_id = aws_cloudfront_cache_policy.default.id
+    compress        = true
   }
 
   viewer_certificate {
