@@ -1,13 +1,14 @@
 module "website" {
   providers = {
-    aws = aws.aws-uw1
+    aws     = aws.aws-uw1
+    aws.dns = aws.aws-uw1
   }
   source                = "infrahouse/website-pod/aws"
-  version               = "~> 0.1, >= 0.1.1"
+  version               = "~> 2.0"
   environment           = var.environment
   ami                   = data.aws_ami.ubuntu_22.image_id
   backend_subnets       = module.website-vpc.subnet_private_ids
-  dns_zone              = "infrahouse.com"
+  zone_id               = data.aws_route53_zone.infrahouse_com.zone_id
   internet_gateway_id   = module.website-vpc.internet_gateway_id
   key_pair_name         = data.aws_key_pair.aleks.key_name
   subnets               = module.website-vpc.subnet_public_ids
@@ -21,7 +22,7 @@ module "webserver_userdata" {
     aws = aws.aws-uw1
   }
   source      = "infrahouse/cloud-init/aws"
-  version     = "~> 1.1, >= 1.1.1"
+  version     = "~> 1.6"
   environment = var.environment
   role        = "webserver"
 }
