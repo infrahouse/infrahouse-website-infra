@@ -31,5 +31,6 @@ data "aws_key_pair" "aleks" {
 }
 
 data "aws_route53_zone" "infrahouse_com" {
-  name = "infrahouse.com"
+  provider = aws.aws-uw1
+  name     = "infrahouse.com"
 }
