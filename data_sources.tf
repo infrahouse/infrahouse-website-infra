@@ -29,3 +29,7 @@ data "aws_key_pair" "aleks" {
   provider = aws.aws-uw1
   key_name = "aleks"
 }
+
+data "aws_route53_zone" "infrahouse_com" {
+  name = "infrahouse.com"
+}

@@ -8,7 +8,7 @@ module "website" {
   environment           = var.environment
   ami                   = data.aws_ami.ubuntu_22.image_id
   backend_subnets       = module.website-vpc.subnet_private_ids
-  dns_zone              = "infrahouse.com"
+  zone_id               = data.aws_route53_zone.infrahouse_com.zone_id
   internet_gateway_id   = module.website-vpc.internet_gateway_id
   key_pair_name         = data.aws_key_pair.aleks.key_name
   subnets               = module.website-vpc.subnet_public_ids
