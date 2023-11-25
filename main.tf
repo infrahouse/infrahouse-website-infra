@@ -21,10 +21,14 @@ module "webserver_userdata" {
   providers = {
     aws = aws.aws-uw1
   }
-  source      = "infrahouse/cloud-init/aws"
-  version     = "~> 1.6"
-  environment = var.environment
-  role        = "webserver"
+  source                   = "infrahouse/cloud-init/aws"
+  version                  = "~> 1.6"
+  environment              = var.environment
+  role                     = "webserver"
+  puppet_hiera_config_path = "/opt/infrahouse-puppet-data/environments/${var.environment}/hiera.yaml"
+  packages = [
+    "infrahouse-puppet-data"
+  ]
 }
 
 data "aws_iam_policy_document" "webserver_permissions" {
