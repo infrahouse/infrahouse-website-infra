@@ -3,7 +3,7 @@ module "website" {
     aws = aws.aws-uw1
   }
   source                = "infrahouse/website-pod/aws"
-  version               = "~> 0.1, >= 0.1.1"
+  version               = "~> 2.0"
   environment           = var.environment
   ami                   = data.aws_ami.ubuntu_22.image_id
   backend_subnets       = module.website-vpc.subnet_private_ids
@@ -21,7 +21,7 @@ module "webserver_userdata" {
     aws = aws.aws-uw1
   }
   source      = "infrahouse/cloud-init/aws"
-  version     = "~> 1.1, >= 1.1.1"
+  version     = "~> 1.6"
   environment = var.environment
   role        = "webserver"
 }
