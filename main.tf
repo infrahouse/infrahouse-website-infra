@@ -1,10 +1,9 @@
 module "website" {
   providers = {
-    aws     = aws.aws-uw1
-    aws.dns = aws.aws-uw1
+    aws = aws.aws-uw1
   }
   source                = "infrahouse/website-pod/aws"
-  version               = "~> 2.0"
+  version               = "=  1.3.1"
   environment           = var.environment
   ami                   = data.aws_ami.ubuntu_22.image_id
   backend_subnets       = module.website-vpc.subnet_private_ids
