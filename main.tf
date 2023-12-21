@@ -1,6 +1,7 @@
 module "website" {
   providers = {
-    aws = aws.aws-uw1
+    aws     = aws.aws-uw1
+    aws.dns = aws.aws-uw1
   }
   source                = "infrahouse/website-pod/aws"
   version               = "~>  2.5"
