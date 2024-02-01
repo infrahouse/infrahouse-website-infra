@@ -4,7 +4,7 @@ module "website" {
     aws.dns = aws.aws-uw1
   }
   source                = "infrahouse/website-pod/aws"
-  version               = "~>  2.5"
+  version               = "~> 2.6"
   environment           = var.environment
   ami                   = data.aws_ami.ubuntu_22.image_id
   backend_subnets       = module.website-vpc.subnet_private_ids
@@ -15,6 +15,7 @@ module "website" {
   userdata              = module.webserver_userdata.userdata
   webserver_permissions = data.aws_iam_policy_document.webserver_permissions.json
   stickiness_enabled    = true
+  ssh_cidr_block        = var.management_cidr_block
 }
 
 module "webserver_userdata" {
