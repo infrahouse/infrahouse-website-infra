@@ -4,7 +4,7 @@ module "website-vpc" {
   }
   source                = "infrahouse/service-network/aws"
   version               = "~> 2.0"
-  management_cidr_block = "10.0.0.0/22"
+  management_cidr_block = var.management_cidr_block
   service_name          = "website"
   vpc_cidr_block        = "10.0.4.0/22"
   environment           = var.environment
