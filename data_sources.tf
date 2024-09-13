@@ -34,3 +34,51 @@ data "aws_route53_zone" "infrahouse_com" {
   provider = aws.aws-uw1
   name     = "infrahouse.com"
 }
+
+data "aws_vpc" "management" {
+  filter {
+    name = "tag:management"
+    values = [
+      true
+    ]
+  }
+}
+
+data "aws_subnets" "management_public" {
+  filter {
+    name = "vpc-id"
+    values = [
+      data.aws_vpc.management.id
+    ]
+  }
+  filter {
+    name = "map-public-ip-on-launch"
+    values = [
+      true
+    ]
+  }
+}
+
+data "aws_subnets" "management_private" {
+  filter {
+    name = "vpc-id"
+    values = [
+      data.aws_vpc.management.id
+    ]
+  }
+  filter {
+    name = "map-public-ip-on-launch"
+    values = [
+      false
+    ]
+  }
+}
+
+data "aws_internet_gateway" "management" {
+  filter {
+    name = "attachment.vpc-id"
+    values = [
+      data.aws_vpc.management.id
+    ]
+  }
+}
