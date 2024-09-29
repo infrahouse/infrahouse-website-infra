@@ -9,6 +9,10 @@ permissions:
   contents: read
   pull-requests: write
 
+concurrency:
+  group: terraform
+  cancel-in-progress: false
+
 env:
   ROLE_ARN: "arn:aws:iam::493370826424:role/ih-tf-infrahouse-website-infra-github"
   STATE_MGR_ROLE_ARN: "arn:aws:iam::289256138624:role/ih-tf-infrahouse-website-infra-state-manager"
