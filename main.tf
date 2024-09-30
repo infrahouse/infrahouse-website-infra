@@ -15,6 +15,7 @@ module "website" {
   userdata                     = module.webserver_userdata.userdata
   instance_profile_permissions = data.aws_iam_policy_document.webserver_permissions.json
   stickiness_enabled           = true
+  alb_access_log_enabled       = true
 }
 
 module "webserver_userdata" {
