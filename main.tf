@@ -4,7 +4,7 @@ module "website" {
     aws.dns = aws.aws-uw1
   }
   source                       = "infrahouse/website-pod/aws"
-  version                      = "~> 4.0"
+  version                      = "~> 4.6"
   environment                  = var.environment
   ami                          = "ami-0ea80799a59ad106b"
   backend_subnets              = data.aws_subnets.management_private.ids
@@ -16,6 +16,7 @@ module "website" {
   instance_profile_permissions = data.aws_iam_policy_document.webserver_permissions.json
   stickiness_enabled           = true
   alb_access_log_enabled       = true
+  on_demand_base_capacity      = 1
 }
 
 module "webserver_userdata" {
