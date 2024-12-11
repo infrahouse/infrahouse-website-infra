@@ -9,6 +9,7 @@ module "website" {
   ami                          = "ami-0ea80799a59ad106b"
   backend_subnets              = data.aws_subnets.management_private.ids
   zone_id                      = data.aws_route53_zone.infrahouse_com.zone_id
+  dns_a_records                = ["", "www"]
   internet_gateway_id          = data.aws_internet_gateway.management.id
   key_pair_name                = data.aws_key_pair.aleks.key_name
   subnets                      = data.aws_subnets.management_public.ids
