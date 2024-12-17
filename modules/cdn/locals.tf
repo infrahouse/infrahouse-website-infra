@@ -1,4 +1,4 @@
 locals {
   origin_id       = "ih-backend"
-  cdn_domain_name = "cdn.infrahouse.com"
+  cdn_domain_name = "${var.cdn_hostname}.infrahouse.com"
 }
