@@ -18,6 +18,8 @@ module "website-staging" {
   stickiness_enabled           = true
   alb_access_log_enabled       = true
   on_demand_base_capacity      = 0
+  asg_min_size                 = 1
+  asg_max_size                 = 1
 }
 
 module "webserver_userdata-staging" {
