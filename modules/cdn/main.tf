@@ -48,7 +48,7 @@ resource "aws_cloudfront_distribution" "repo" {
 }
 
 resource "aws_cloudfront_cache_policy" "default" {
-  name        = "${local.origin_id}_default"
+  name        = "${local.origin_id}_${var.cdn_hostname}"
   min_ttl     = 60
   default_ttl = 300
   max_ttl     = 600
