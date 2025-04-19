@@ -4,7 +4,7 @@ module "website" {
     aws.dns = aws.aws-uw1
   }
   source                       = "infrahouse/website-pod/aws"
-  version                      = "~> 4.6"
+  version                      = "~> 5.0"
   environment                  = var.environment
   ami                          = data.aws_ami.ubuntu_pro.id
   backend_subnets              = data.aws_subnets.management_private.ids
