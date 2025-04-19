@@ -6,7 +6,7 @@ module "website" {
   source                       = "infrahouse/website-pod/aws"
   version                      = "~> 4.6"
   environment                  = var.environment
-  ami                          = "ami-0ea80799a59ad106b"
+  ami                          = data.aws_ami.ubuntu_pro.id
   backend_subnets              = data.aws_subnets.management_private.ids
   zone_id                      = data.aws_route53_zone.infrahouse_com.zone_id
   dns_a_records                = ["", "www"]
