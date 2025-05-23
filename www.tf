@@ -27,6 +27,7 @@ module "webserver_userdata" {
   source                   = "infrahouse/cloud-init/aws"
   version                  = "1.18.0"
   environment              = var.environment
+  ubuntu_codename          = local.ubuntu_codename
   role                     = "webserver"
   puppet_hiera_config_path = "/opt/infrahouse-puppet-data/environments/${var.environment}/hiera.yaml"
   packages = [
