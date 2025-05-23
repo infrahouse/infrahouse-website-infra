@@ -4,7 +4,7 @@ module "website" {
     aws.dns = aws.aws-uw1
   }
   source                       = "infrahouse/website-pod/aws"
-  version                      = "~> 4.6"
+  version                      = "5.3.0"
   environment                  = var.environment
   ami                          = data.aws_ami.ubuntu_pro.id
   backend_subnets              = data.aws_subnets.management_private.ids
@@ -25,7 +25,7 @@ module "webserver_userdata" {
     aws = aws.aws-uw1
   }
   source                   = "infrahouse/cloud-init/aws"
-  version                  = "~> 1.6"
+  version                  = "1.18.0"
   environment              = var.environment
   role                     = "webserver"
   puppet_hiera_config_path = "/opt/infrahouse-puppet-data/environments/${var.environment}/hiera.yaml"
