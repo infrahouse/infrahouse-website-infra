@@ -25,7 +25,7 @@ module "webserver_userdata" {
     aws = aws.aws-uw1
   }
   source                   = "infrahouse/cloud-init/aws"
-  version                  = "1.18.0"
+  version                  = "2.1.0"
   environment              = var.environment
   ubuntu_codename          = local.ubuntu_codename
   role                     = "webserver"
