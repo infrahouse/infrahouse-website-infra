@@ -7,7 +7,7 @@ terraform {
       role_arn = "arn:aws:iam::289256138624:role/ih-tf-infrahouse-website-infra-state-manager"
     }
 
-    dynamodb_table = "infrahouse-terraform-state-locks"
+    dynamodb_table = "infrahouse-website-infra-fine-sunfish"
     encrypt        = true
   }
 
