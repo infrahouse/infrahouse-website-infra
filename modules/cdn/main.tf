@@ -1,6 +1,7 @@
-resource "aws_cloudfront_distribution" "repo" {
+resource "aws_cloudfront_distribution" "this" {
   enabled         = true
   is_ipv6_enabled = true
+  comment         = "${var.cdn_hostname}.infrahouse.com CDN distribution"
   aliases = [
     local.cdn_domain_name
   ]
@@ -12,7 +13,7 @@ resource "aws_cloudfront_distribution" "repo" {
       http_port              = 80
       https_port             = 443
       origin_protocol_policy = "https-only"
-      origin_ssl_protocols   = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+      origin_ssl_protocols   = ["TLSv1.2"]
     }
   }
 
@@ -30,18 +31,21 @@ resource "aws_cloudfront_distribution" "repo" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.cdn.arn
-    ssl_support_method  = "sni-only"
+    acm_certificate_arn      = aws_acm_certificate.cdn.arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
+  }
+
+  logging_config {
+    include_cookies = false
+    bucket          = var.logging_bucket_domain_name
+    prefix          = "cloudfront/${var.cdn_hostname}/"
   }
 
   restrictions {
     geo_restriction {
       restriction_type = "blacklist"
-      locations = [
-        "RU",
-        "CN",
-        "IR"
-      ]
+      locations        = var.geo_restriction_locations
     }
   }
 

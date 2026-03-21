@@ -1,17 +1,11 @@
 module "cdn" {
-  source = "./modules/cdn"
-  providers = {
-    aws     = aws.aws-uw1
-    aws.ue1 = aws.aws-ue1
-  }
-  cdn_hostname = "cdn"
+  source                     = "./modules/cdn"
+  cdn_hostname               = "cdn"
+  logging_bucket_domain_name = module.cdn_access_logs.bucket_regional_domain_name
 }
 
-module "cdn-staging" {
-  source = "./modules/cdn"
-  providers = {
-    aws     = aws.aws-uw1
-    aws.ue1 = aws.aws-ue1
-  }
-  cdn_hostname = "cdn-staging"
+module "cdn_staging" {
+  source                     = "./modules/cdn"
+  cdn_hostname               = "cdn-staging"
+  logging_bucket_domain_name = module.cdn_access_logs.bucket_regional_domain_name
 }
