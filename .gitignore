@@ -32,3 +32,5 @@ tf.plan
 /docs/_build/
 /plan.stderr
 /plan.stdout
+.claude/reviews
+.claude/*.local.json
