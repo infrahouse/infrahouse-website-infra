@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "WebFetch(domain:registry.terraform.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "mcp__github__get_file_contents",
+      "WebSearch",
+      "WebFetch(domain:discuss.hashicorp.com)",
+      "WebFetch(domain:developer.hashicorp.com)",
+      "WebFetch(domain:search.opentofu.org)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:manuchandrasekhar.medium.com)",
+      "WebFetch(domain:dev.to)",
+      "mcp__github__search_code"
+    ]
+  }
+}

@@ -34,8 +34,8 @@ bootstrap: install-hooks ## Build development environment
 	pip install -r requirements.txt
 
 .PHONY: bootstrap-ci
-bootstrap-ci:  ## Build environment for CI
-	pip install -r requirements-ci.txt
+bootstrap-ci:  bootstrap ## Build environment for CI
+	pip install -r requirements.txt
 
 .PHONY: lint
 lint:  ## Check code style
@@ -59,3 +59,8 @@ plan: init ## Run terraform plan
 .PHONY: apply
 apply: ## Run terraform apply
 	terraform apply -auto-approve -input=false tf.plan
+
+.PHONY: clean
+clean:  ## Clean build artifacts
+	rm -f tf.plan plan.stdout plan.stderr
+	rm -rf .terraform/

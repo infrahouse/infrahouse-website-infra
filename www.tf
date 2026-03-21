@@ -1,9 +1,9 @@
 module "website" {
   providers = {
-    aws     = aws.aws-uw1
-    aws.dns = aws.aws-uw1
+    aws     = aws
+    aws.dns = aws
   }
-  source                       = "infrahouse/website-pod/aws"
+  source                       = "registry.infrahouse.com/infrahouse/website-pod/aws"
   version                      = "5.8.2"
   environment                  = var.environment
   ami                          = data.aws_ami.ubuntu_pro.id
@@ -21,10 +21,7 @@ module "website" {
 }
 
 module "webserver_userdata" {
-  providers = {
-    aws = aws.aws-uw1
-  }
-  source                   = "infrahouse/cloud-init/aws"
+  source                   = "registry.infrahouse.com/infrahouse/cloud-init/aws"
   version                  = "2.2.2"
   environment              = var.environment
   ubuntu_codename          = local.ubuntu_codename
@@ -37,7 +34,7 @@ module "webserver_userdata" {
 
 data "aws_iam_policy_document" "webserver_permissions" {
   statement {
-    actions   = ["ec2:Describe*"]
+    actions   = ["sts:GetCallerIdentity"]
     resources = ["*"]
   }
 }

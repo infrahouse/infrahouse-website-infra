@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "cdn" {
-  provider          = aws.ue1
+  region            = "us-east-1"
   domain_name       = local.cdn_domain_name
   validation_method = "DNS"
 }
@@ -21,8 +21,8 @@ resource "aws_route53_record" "cert_validation" {
   ttl = 60
 }
 
-resource "aws_acm_certificate_validation" "repo" {
-  provider        = aws.ue1
+resource "aws_acm_certificate_validation" "this" {
+  region          = "us-east-1"
   certificate_arn = aws_acm_certificate.cdn.arn
   validation_record_fqdns = [
     aws_route53_record.cert_validation[aws_acm_certificate.cdn.domain_name].fqdn

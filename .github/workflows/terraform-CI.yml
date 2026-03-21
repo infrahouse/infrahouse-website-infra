@@ -20,7 +20,7 @@ env:
 jobs:
   terraform:
     name: 'Terraform Plan'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: continuous-integration
     timeout-minutes: 10
     env:
@@ -54,6 +54,11 @@ jobs:
           terraform_version: ${{ steps.terraform_version.outputs.IH_TF_VERSION }}
 
       # Prepare Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
       - name: Setup Python Environment
         run: make bootstrap-ci
 
