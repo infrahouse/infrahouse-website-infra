@@ -4,7 +4,7 @@ module "website" {
     aws.dns = aws
   }
   source                       = "registry.infrahouse.com/infrahouse/website-pod/aws"
-  version                      = "5.8.2"
+  version                      = "6.0.0"
   environment                  = var.environment
   ami                          = data.aws_ami.ubuntu_pro.id
   backend_subnets              = data.aws_subnets.management_private.ids
