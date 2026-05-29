@@ -17,6 +17,9 @@ module "website" {
   instance_profile_permissions = data.aws_iam_policy_document.webserver_permissions.json
   stickiness_enabled           = true
   on_demand_base_capacity      = 1
+  alarm_emails = [
+    local.alarm_email
+  ]
 }
 
 module "webserver_userdata" {
