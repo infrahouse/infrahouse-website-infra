@@ -4,22 +4,20 @@ module "website" {
     aws.dns = aws
   }
   source                       = "registry.infrahouse.com/infrahouse/website-pod/aws"
-  version                      = "6.0.0"
+  version                      = "5.8.2"
   environment                  = var.environment
   ami                          = data.aws_ami.ubuntu_pro.id
   backend_subnets              = data.aws_subnets.management_private.ids
   zone_id                      = data.aws_route53_zone.infrahouse_com.zone_id
   dns_a_records                = ["", "www"]
-  replication_region           = local.dr_region
+  internet_gateway_id          = data.aws_internet_gateway.management.id
   key_pair_name                = data.aws_key_pair.aleks.key_name
   subnets                      = data.aws_subnets.management_public.ids
   userdata                     = module.webserver_userdata.userdata
   instance_profile_permissions = data.aws_iam_policy_document.webserver_permissions.json
   stickiness_enabled           = true
+  alb_access_log_enabled       = true
   on_demand_base_capacity      = 1
-  alarm_emails = [
-    local.alarm_email
-  ]
 }
 
 module "webserver_userdata" {
