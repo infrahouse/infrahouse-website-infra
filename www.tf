@@ -24,7 +24,7 @@ module "website" {
 
 module "webserver_userdata" {
   source                   = "registry.infrahouse.com/infrahouse/cloud-init/aws"
-  version                  = "2.2.2"
+  version                  = "2.4.0"
   environment              = var.environment
   ubuntu_codename          = local.ubuntu_codename
   role                     = "webserver"
