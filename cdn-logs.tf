@@ -4,6 +4,8 @@ module "cdn_access_logs" {
   bucket_name   = local.cdn_logs_bucket_name
   enable_acl    = true
   bucket_policy = data.aws_iam_policy_document.cdn_logs_bucket_policy.json
+
+  replication_region = local.dr_region
 }
 
 data "aws_iam_policy_document" "cdn_logs_bucket_policy" {
