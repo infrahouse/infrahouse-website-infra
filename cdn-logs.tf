@@ -1,9 +1,11 @@
 module "cdn_access_logs" {
   source        = "registry.infrahouse.com/infrahouse/s3-bucket/aws"
-  version       = "0.3.1"
+  version       = "0.9.0"
   bucket_name   = local.cdn_logs_bucket_name
   enable_acl    = true
   bucket_policy = data.aws_iam_policy_document.cdn_logs_bucket_policy.json
+
+  replication_region = local.dr_region
 }
 
 data "aws_iam_policy_document" "cdn_logs_bucket_policy" {
